@@ -32,6 +32,7 @@ function Answer() {
     <Wrapper>
       {answers.map((answer) => (
         <AnswerItem
+          key={answer.id}
           answer={answer}
           checked={answer.id === checkedAnswer}
           onClick={() => handleClick(answer.id)}
