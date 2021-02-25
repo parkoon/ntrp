@@ -1,5 +1,4 @@
-
-import {createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
@@ -7,10 +6,12 @@ const GlobalStyle = createGlobalStyle`
   /* other styles */
 `
 function App({ Component, pageProps }) {
-  return <>
-    <GlobalStyle />
-    <Component {...pageProps} />
-  </>
+  return (
+    <>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default App
