@@ -3,6 +3,6 @@
   "singleQuote": true,
   "tabWidth": 2,
   "printWidth": 100,
-  "importOrder": ["^@Components/(.*)$", "^[./]"],
+  "importOrder": ["^@Components/(.*)$", "^@Assets/(.*)$", "^[./]"],
   "importOrderSeparation": true
 }
