@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div`
-  width: 520px;
-`
+import media from '@Assets/styles/media'
+
+export const Wrapper = styled.div``
 
 export const ItemTitle = styled.h4`
   font-weight: bold;
@@ -29,6 +29,10 @@ const HoverAndCheckedEffect = css`
 
   border-color: ${(props) => props.theme.color.main};
   transform: translateX(20px);
+
+  ${media.small`
+    transform: translateX(0);
+  `}
 `
 
 export const Item = styled.div<{ checked?: boolean }>`

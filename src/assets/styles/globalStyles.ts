@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
   }
 
   * {

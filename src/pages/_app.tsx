@@ -1,16 +1,14 @@
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { ThemeProvider } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-  /* other styles */
-`
+import GlobalStyles from '@Assets/styles/globalStyles'
+import theme from '@Assets/styles/theme'
+
 function App({ Component, pageProps }) {
   return (
-    <>
-      <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <Component {...pageProps} />
-    </>
+    </ThemeProvider>
   )
 }
 

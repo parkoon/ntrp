@@ -10,6 +10,4 @@ export const Title = styled.h2`
   word-break: keep-all;
 
   line-height: 42px;
-
-  width: 520px;
 `
