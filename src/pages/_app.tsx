@@ -1,3 +1,4 @@
+import { appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyles from '@Assets/styles/globalStyles'
@@ -12,4 +13,4 @@ function App({ Component, pageProps }) {
   )
 }
 
-export default App
+export default appWithTranslation(App)

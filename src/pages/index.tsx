@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import styled from 'styled-components'
 
 import ActionButton from '@Components/ActionButton'
@@ -29,8 +31,10 @@ const TestWrapper = styled.div`
 `
 
 function Home() {
+  const { t } = useTranslation('common')
   return (
     <TestWrapper>
+      {t('saying')}
       <main>
         <Progress percent={100} />
         <Question title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum placeat impedit" />
@@ -47,5 +51,11 @@ function Home() {
     </TestWrapper>
   )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+})
 
 export default Home
