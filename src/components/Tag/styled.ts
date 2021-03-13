@@ -16,4 +16,6 @@ export const Wrapper = styled.span`
   color: #fff;
 `
 
-export const Container = styled.div``
+export const Container = styled.div`
+  margin-bottom: 24px;
+`

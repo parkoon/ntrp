@@ -50,7 +50,7 @@ export const Item = styled.div<{ checked?: boolean }>`
   transition: 0.3s;
 
   &:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
   }
 
   &:hover {

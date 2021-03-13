@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
-  margin-bottom: 32px;
+  margin-bottom: 18px;
 `
 export const Box = styled.div`
   flex: 1;
