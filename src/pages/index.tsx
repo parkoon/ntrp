@@ -6,6 +6,7 @@ import ActionButton from '@Components/ActionButton'
 import Answer from '@Components/Answer'
 import Progress from '@Components/Progress'
 import Question from '@Components/Question'
+import Tag from '@Components/Tag'
 
 import media from '@Assets/styles/media'
 
@@ -31,13 +32,11 @@ const TestWrapper = styled.div`
 `
 
 function Home() {
-  const { t } = useTranslation('common')
   return (
     <TestWrapper>
-      {t('saying')}
       <main>
-        <Progress percent={100} />
-        <Question title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur cum placeat impedit" />
+        <Progress percent={20} />
+        <Question title="비슷한 수준의 사람들하고 베이스라인 랠리를 천천히 주고받을 수 있고 조금씩 스트로크를 함" />
         <Answer />
         <ActionButton
           text={{ next: 'Next', prev: 'Prev', submit: 'Submit' }}

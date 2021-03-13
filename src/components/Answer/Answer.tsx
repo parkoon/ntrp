@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 
 import AnswerItem from './AnswerItem'
@@ -6,19 +7,23 @@ import { Wrapper } from './styled'
 const answers = [
   {
     id: 1,
-    title: 'Morning',
+    title: '매우 그렇다',
   },
   {
     id: 2,
-    title: 'Afternoon',
+    title: '그렇다',
   },
   {
     id: 3,
-    title: 'Evening',
+    title: '보통이다',
   },
   {
     id: 4,
-    title: 'Night',
+    title: '그렇지 않다',
+  },
+  {
+    id: 5,
+    title: '매우 그렇지 않다',
   },
 ]
 
