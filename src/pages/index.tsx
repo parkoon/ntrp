@@ -37,6 +37,11 @@ function Home() {
       <main>
         <Progress percent={20} />
         <Question title="비슷한 수준의 사람들하고 베이스라인 랠리를 천천히 주고받을 수 있고 조금씩 스트로크를 함" />
+
+        <Tag.TagContainer>
+          <Tag title="포핸드" />
+          <Tag title="포핸드" />
+        </Tag.TagContainer>
         <Answer />
         <ActionButton
           text={{ next: 'Next', prev: 'Prev', submit: 'Submit' }}

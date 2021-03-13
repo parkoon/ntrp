@@ -5,12 +5,15 @@ export const Wrapper = styled.span`
   justify-content: center;
   align-items: center;
 
-  height: 32px;
+  height: 24px;
   text-align: center;
-  background: green;
+  background: ${(props) => props.theme.color.main};
 
-  padding: 12px 18px;
+  padding: 10px 14px;
   border-radius: 100px;
 
+  font-size: 14px;
   color: #fff;
 `
+
+export const Container = styled.div``
