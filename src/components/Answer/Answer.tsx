@@ -1,46 +1,29 @@
-import { useTranslation } from 'next-i18next'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { IAnswer } from 'src/interfaces/Ntrp'
 
 import AnswerItem from './AnswerItem'
 import { Wrapper } from './styled'
 
-const answers = [
-  {
-    id: 1,
-    title: '매우 그렇다',
-  },
-  {
-    id: 2,
-    title: '그렇다',
-  },
-  {
-    id: 3,
-    title: '보통이다',
-  },
-  {
-    id: 4,
-    title: '그렇지 않다',
-  },
-  {
-    id: 5,
-    title: '매우 그렇지 않다',
-  },
-]
+type AnswerType = {
+  sources: IAnswer[]
+  onChange(answer: IAnswer): void
+}
+function Answer({ sources, onChange }: AnswerType) {
+  const [checkedAnswer, setCheckedAnswer] = useState<string | undefined>()
 
-function Answer() {
-  const [checkedAnswer, setCheckedAnswer] = useState<number | undefined>()
-
-  const handleClick = (id: number) => {
+  const handleClick = (id: string) => {
     setCheckedAnswer(id)
+    onChange(sources.find((source) => source.id === id))
   }
+
   return (
     <Wrapper>
-      {answers.map((answer) => (
+      {sources.map(({ id, title }) => (
         <AnswerItem
-          key={answer.id}
-          answer={answer}
-          checked={answer.id === checkedAnswer}
-          onClick={() => handleClick(answer.id)}
+          key={id}
+          title={title}
+          checked={id === checkedAnswer}
+          onClick={() => handleClick(id)}
         />
       ))}
     </Wrapper>

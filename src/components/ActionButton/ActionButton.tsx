@@ -20,16 +20,16 @@ function ActionButton({ text, isStart, isEnd, onSubmit, onPrev, onNext }: Action
   if (isStart) {
     return (
       <Wrapper full={isStart}>
-        <Button onClick={onPrev}>{next}</Button>
+        <Button onClick={onNext}>{next}</Button>
       </Wrapper>
     )
   }
 
   return (
     <Wrapper>
-      <Button onClick={onNext}>{prev}</Button>
+      <Button onClick={onPrev}>{prev}</Button>
 
-      {isEnd ? <Button>{next}</Button> : <Button onClick={onSubmit}>{submit}</Button>}
+      {isEnd ? <Button onClick={onSubmit}>{submit}</Button> : <Button>{next}</Button>}
     </Wrapper>
   )
 }

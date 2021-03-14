@@ -4,13 +4,11 @@ import { FaCheck } from 'react-icons/fa'
 import { Item, ItemIconWrapper, ItemTitle } from './styled'
 
 type AnswerItemProps = {
-  answer: { id: number; title: string }
+  title: string
   checked: boolean
   onClick(e: MouseEvent): void
 }
-function AnswerItem({ answer, ...props }: AnswerItemProps) {
-  const { id, title } = answer
-
+function AnswerItem({ title, ...props }: AnswerItemProps) {
   return (
     <Item {...props}>
       <ItemIconWrapper>
