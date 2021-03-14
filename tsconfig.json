@@ -12,11 +12,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "downlevelIteration": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@Components/*": ["./src/components/*"],
-      "@Assets/*": ["./src/assets/*"]
+      "@Assets/*": ["./src/assets/*"],
+      "@Constants/*": ["./src/constants/*"],
+      "@Interfaces/*": ["src/interfaces/*"],
+      "@Helpers/*": ["src/helpers/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
