@@ -1,5 +1,5 @@
 import { darken } from 'polished'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div<{ full?: boolean }>`
   display: grid;
@@ -9,7 +9,7 @@ export const Wrapper = styled.div<{ full?: boolean }>`
   margin-top: 34px;
 `
 
-export const Button = styled.button`
+export const Button = styled.button<{ disabled?: boolean }>`
   width: 100%;
 
   background-color: ${(props) => props.theme.color.main};
@@ -25,11 +25,15 @@ export const Button = styled.button`
 
   transition: 0.2s;
 
-  &:hover {
-    background: ${({
-      theme: {
-        color: { main },
-      },
-    }) => `${darken(0.04, main)}`};
-  }
+  ${({ disabled, theme }) =>
+    disabled
+      ? css`
+          background: ${theme.color.lightGrey};
+          cursor: no-drop;
+        `
+      : css`
+          &:hover {
+            background: ${darken(0.04, theme.color.main)};
+          }
+        `}
 `

@@ -3,33 +3,37 @@ import React from 'react'
 import { Wrapper, Button } from './styled'
 
 type ActionButtonProps = {
-  text: {
-    prev: string
-    next: string
-    submit: string
-  }
   isStart: boolean
   isEnd: boolean
+  disabled: boolean
   onSubmit(): void
   onPrev(): void
   onNext(): void
 }
-function ActionButton({ text, isStart, isEnd, onSubmit, onPrev, onNext }: ActionButtonProps) {
-  const { next, prev, submit } = text
-
+function ActionButton({ isStart, isEnd, disabled, onSubmit, onPrev, onNext }: ActionButtonProps) {
   if (isStart) {
     return (
       <Wrapper full={isStart}>
-        <Button onClick={onNext}>{next}</Button>
+        <Button disabled={disabled} onClick={onNext}>
+          다음으로
+        </Button>
       </Wrapper>
     )
   }
 
   return (
     <Wrapper>
-      <Button onClick={onPrev}>{prev}</Button>
+      <Button onClick={onPrev}>이전으로</Button>
 
-      {isEnd ? <Button onClick={onSubmit}>{submit}</Button> : <Button>{next}</Button>}
+      {isEnd ? (
+        <Button disabled={disabled} onClick={onSubmit}>
+          측정하기
+        </Button>
+      ) : (
+        <Button disabled={disabled} onClick={onNext}>
+          다음으로
+        </Button>
+      )}
     </Wrapper>
   )
 }

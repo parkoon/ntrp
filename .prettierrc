@@ -5,6 +5,7 @@
   "printWidth": 100,
   "importOrder": [
     "^@Components/(.*)$",
+    "^@Hooks/(.*)$",
     "^@Interfaces/(.*)$",
     "^@Helpers/(.*)$",
     "^@Constants/(.*)$",

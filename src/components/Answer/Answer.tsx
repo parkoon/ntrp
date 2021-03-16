@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { IAnswer } from 'src/interfaces/Ntrp'
+import React, { useState } from 'react'
+
+import { IAnswer } from '@Interfaces/Ntrp'
 
 import AnswerItem from './AnswerItem'
 import { Wrapper } from './styled'
 
 type AnswerType = {
   sources: IAnswer[]
+  currentAnswer?: IAnswer
   onChange(answer: IAnswer): void
 }
-function Answer({ sources, onChange }: AnswerType) {
-  const [checkedAnswer, setCheckedAnswer] = useState<string | undefined>()
+function Answer({ sources, currentAnswer, onChange }: AnswerType) {
+  const [answer, setAnswer] = useState<IAnswer>()
 
   const handleClick = (id: string) => {
-    setCheckedAnswer(id)
-    onChange(sources.find((source) => source.id === id))
+    const selectedAnswer = sources.find((source) => source.id === id)
+    setAnswer(selectedAnswer)
+    onChange(selectedAnswer)
   }
 
   return (
@@ -22,7 +25,7 @@ function Answer({ sources, onChange }: AnswerType) {
         <AnswerItem
           key={id}
           title={title}
-          checked={id === checkedAnswer}
+          checked={currentAnswer ? id === currentAnswer.id : id === answer?.id}
           onClick={() => handleClick(id)}
         />
       ))}

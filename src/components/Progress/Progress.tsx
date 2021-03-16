@@ -7,15 +7,18 @@ type ProgressType = {
   percent: number
 }
 function Progress({ percent }: ProgressType) {
-  const done = false
+  const isDone = percent === 100
   return (
     <Wrapper>
       <Box>
         <Thumb percent={percent} />
       </Box>
-      <DoneIconWrapper>
-        <FaCheck color="#fff" size="12" />
-      </DoneIconWrapper>
+
+      {isDone && (
+        <DoneIconWrapper>
+          <FaCheck color="#fff" size="12" />
+        </DoneIconWrapper>
+      )}
     </Wrapper>
   )
 }

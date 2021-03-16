@@ -17,10 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@Components/*": ["./src/components/*"],
+      "@Hooks/*": ["./src/hooks/*"],
       "@Assets/*": ["./src/assets/*"],
       "@Constants/*": ["./src/constants/*"],
-      "@Interfaces/*": ["src/interfaces/*"],
-      "@Helpers/*": ["src/helpers/*"]
+      "@Interfaces/*": ["./src/interfaces/*"],
+      "@Helpers/*": ["./src/helpers/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

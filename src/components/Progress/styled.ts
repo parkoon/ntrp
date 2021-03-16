@@ -19,6 +19,8 @@ export const Thumb = styled.div<{ percent: number }>`
   border-radius: 100px;
 
   background-color: ${(props) => props.theme.color.main};
+
+  transition: 0.3s;
 `
 
 export const DoneIconWrapper = styled.div`
