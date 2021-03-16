@@ -1,5 +1,4 @@
 import { produce } from 'immer'
-import { appWithTranslation } from 'next-i18next'
 import {
   atom,
   RecoilRoot,
@@ -106,4 +105,4 @@ function App({ Component, pageProps }) {
   )
 }
 
-export default appWithTranslation(App)
+export default App

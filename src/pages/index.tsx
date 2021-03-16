@@ -1,12 +1,4 @@
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import styled from 'styled-components'
-
-import ActionButton from '@Components/ActionButton'
-import Answer from '@Components/Answer'
-import Progress from '@Components/Progress'
-import Question from '@Components/Question'
-import Tag from '@Components/Tag'
 
 import media from '@Assets/styles/media'
 
@@ -34,11 +26,5 @@ const TestWrapper = styled.div`
 function Home() {
   return <div>home</div>
 }
-
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common'])),
-  },
-})
 
 export default Home
