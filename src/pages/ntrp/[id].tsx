@@ -12,6 +12,8 @@ import Tag from '@Components/Tag'
 
 import useNtrpQuestion from '@Hooks/useNtrpQuestion'
 
+import questions from '@Constants/ntrp/questions'
+
 import media from '@Assets/styles/media'
 
 import {
@@ -101,6 +103,18 @@ function Ntrp() {
       </main>
     </TestWrapper>
   )
+}
+
+export async function getStaticPaths() {
+  const paths = Object.keys(questions).map((id) => ({ params: { id: String(id) } }))
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps() {
+  return { props: {} }
 }
 
 export default Ntrp
