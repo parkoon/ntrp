@@ -1,7 +1,7 @@
 import { css } from 'styled-components'
 
 // Ref. https://medium.com/@samuelresua/easy-media-queries-in-styled-components-690b78f50053
-const sizes: { [key: string]: number } = {
+export const sizes: { [key: string]: number } = {
   huge: 1200,
   large: 992,
   medium: 768,
