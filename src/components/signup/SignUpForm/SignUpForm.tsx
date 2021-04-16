@@ -4,15 +4,17 @@ import styled from 'styled-components'
 import Anchor from '@Components/atomic/Anchor'
 import Box from '@Components/atomic/Box'
 import Button from '@Components/atomic/Button'
+import Divider from '@Components/atomic/Divider'
 import Form from '@Components/atomic/Form'
-import TextInput from '@Components/atomic/Input'
+import { TextInput } from '@Components/atomic/Input'
 import SocialLogin from '@Components/common/SocialLogin'
 
 type FormValues = {
+  name: string
   email: string
   password: string
 }
-function LoginForm() {
+function SignUpForm() {
   const handleSubmit = (data: FormValues) => console.log(data)
 
   return (
@@ -21,6 +23,22 @@ function LoginForm() {
         console.log(formState.errors)
         return (
           <>
+            <SocialLogin />
+
+            <Divider gutter={32} />
+
+            <Box gutter={24}>
+              <TextInput
+                label="이름"
+                type="text"
+                placeholder="이름을 입력해주세요"
+                error={Boolean(formState.errors.name)}
+                errorMessage={
+                  formState.errors.name?.type === 'required' ? '이름을 입력해주세요' : ''
+                }
+                {...register('name', { required: true })}
+              />
+            </Box>
             <Box gutter={24}>
               <TextInput
                 label="이메일"
@@ -47,15 +65,8 @@ function LoginForm() {
             </Box>
 
             <Box gutter={12}>
-              <Button type="submit">로그인</Button>
+              <Button type="submit">회원가입</Button>
             </Box>
-
-            <Box flex hAlignment="center" gutter={32}>
-              <Anchor>비밀번호 재설정</Anchor>
-              <Anchor>회원가입</Anchor>
-            </Box>
-
-            <SocialLogin />
           </>
         )
       }}
@@ -63,4 +74,4 @@ function LoginForm() {
   )
 }
 
-export default LoginForm
+export default SignUpForm
