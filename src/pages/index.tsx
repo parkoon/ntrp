@@ -1,9 +1,9 @@
-import Link from 'next/link'
+import Header from '@Components/layout/Header'
 
 function Home() {
   return (
     <div>
-      <Link href="/ntrp/1">NTRP</Link>
+      <Header />
     </div>
   )
 }

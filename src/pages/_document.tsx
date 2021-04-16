@@ -60,13 +60,19 @@ export default class MyDocument extends Document {
           <meta content="KRW" name="currency" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>
         <body>
           <Main />
           <NextScript />
+
+          <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=289bb788c382b213420e6936a4012ad5"
+            async
+          />
         </body>
       </Html>
     )
