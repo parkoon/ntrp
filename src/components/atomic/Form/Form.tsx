@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm, UseFormReturn, SubmitHandler } from 'react-hook-form'
 
+// https://react-hook-form.com/ts#UseFormMethods
 type FormProps<TFormValues> = {
   onSubmit: SubmitHandler<TFormValues>
   children: (methods: UseFormReturn<TFormValues>) => React.ReactNode

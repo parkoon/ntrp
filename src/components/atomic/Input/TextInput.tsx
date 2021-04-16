@@ -1,23 +1,29 @@
 import { rgba } from 'polished'
 import React, { InputHTMLAttributes, forwardRef } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
 import styled, { CSSProperties } from 'styled-components'
 
 type Props = {
-  label: string
-
+  label?: string
   error?: boolean
   errorMessage?: string
   wrapperStyle?: CSSProperties
+  searchIcon?: boolean
 } & InputHTMLAttributes<HTMLInputElement>
 
 const TextInput = forwardRef<HTMLInputElement, Props>(
-  ({ error, errorMessage, label, wrapperStyle, ...props }, ref) => {
+  ({ error, errorMessage, label, wrapperStyle, searchIcon, ...props }, ref) => {
     const hasError = error && errorMessage
     return (
       <Wrapper style={wrapperStyle}>
         <fieldset>
-          <Label>{label}</Label>
-          <Input type="text" ref={ref} error={error} {...props} />
+          {label && <Label>{label}</Label>}
+
+          <InputWrapper>
+            {searchIcon && <SearchIcon />}
+
+            <Input type="text" ref={ref} error={error} {...props} />
+          </InputWrapper>
         </fieldset>
         {hasError && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </Wrapper>
@@ -25,8 +31,25 @@ const TextInput = forwardRef<HTMLInputElement, Props>(
   }
 )
 
+const SearchIcon = () => (
+  <AiOutlineSearch
+    style={{
+      position: 'absolute',
+      left: 0,
+      top: '50%',
+      transform: 'translateY(-50%)',
+      fontWeight: 'normal',
+    }}
+    size={24}
+  />
+)
+
 const Wrapper = styled.div`
   width: 100%;
+`
+
+const InputWrapper = styled.fieldset`
+  position: relative;
 `
 
 const Input = styled.input<{ error?: boolean }>`
