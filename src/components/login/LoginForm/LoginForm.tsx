@@ -5,7 +5,7 @@ import Anchor from '@Components/atomic/Anchor'
 import Box from '@Components/atomic/Box'
 import Button from '@Components/atomic/Button'
 import Form from '@Components/atomic/Form'
-import TextInput from '@Components/atomic/Input'
+import { TextInput } from '@Components/atomic/Input'
 import SocialLogin from '@Components/common/SocialLogin'
 
 type FormValues = {
