@@ -6,7 +6,7 @@ import Box from '@Components/atomic/Box'
 import Button from '@Components/atomic/Button'
 import Form from '@Components/atomic/Form'
 import { TextInput } from '@Components/atomic/Input'
-import SocialLogin from '@Components/common/SocialLogin'
+import SocialLogin from '@Components/atomic/SocialLogin'
 
 type FormValues = {
   email: string

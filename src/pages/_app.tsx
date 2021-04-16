@@ -9,7 +9,7 @@ import {
 } from 'recoil'
 import { ThemeProvider } from 'styled-components'
 
-import DebugObserver from '@Components/DebugObserver'
+import DebugObserver from '@Components/atomic/DebugObserver'
 
 import { IAnswer } from '@Interfaces/Ntrp'
 

@@ -7,7 +7,7 @@ import Button from '@Components/atomic/Button'
 import Divider from '@Components/atomic/Divider'
 import Form from '@Components/atomic/Form'
 import { TextInput } from '@Components/atomic/Input'
-import SocialLogin from '@Components/common/SocialLogin'
+import SocialLogin from '@Components/atomic/SocialLogin'
 
 type FormValues = {
   name: string

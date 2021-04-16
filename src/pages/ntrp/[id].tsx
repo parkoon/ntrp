@@ -4,11 +4,11 @@ import { useRecoilValue } from 'recoil'
 import { IAnswer } from 'src/interfaces/Ntrp'
 import styled from 'styled-components'
 
-import ActionButton from '@Components/ActionButton'
-import Answer from '@Components/Answer'
-import Progress from '@Components/Progress'
-import Question from '@Components/Question'
-import Tag from '@Components/Tag'
+import ActionButton from '@Components/ntrp/ActionButton'
+import Answer from '@Components/ntrp/Answer'
+import Progress from '@Components/ntrp/Progress'
+import Question from '@Components/ntrp/Question'
+import Tag from '@Components/ntrp/Tag'
 
 import useNtrpQuestion from '@Hooks/useNtrpQuestion'
 
