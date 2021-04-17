@@ -5,19 +5,18 @@ type Value = { min: number; max: number }
 type Props = {
   min: number
   max: number
+  unit?: string
   onChange?(value: Value): void
   onComplete?(value: Value): void
 }
 
 const THUMB_SIZE = 25
-function RangeSliderTwo({ min, max, onComplete, onChange }: Props) {
+function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
   const leftInput = useRef<HTMLInputElement>(null)
   const rightInput = useRef<HTMLInputElement>(null)
 
-  const [leftValue, setLeftValue] = useState(0)
-  const [rightValue, setRightValue] = useState(100)
-
-  const [] = useState(false)
+  const [leftValue, setLeftValue] = useState(min)
+  const [rightValue, setRightValue] = useState(max)
 
   const leftPercentage = useMemo(() => (100 * (leftValue - min)) / (max - min), [
     leftValue,
@@ -29,7 +28,6 @@ function RangeSliderTwo({ min, max, onComplete, onChange }: Props) {
     min,
     max,
   ])
-
   useEffect(() => {
     onChange?.({
       min: leftValue,
@@ -39,39 +37,58 @@ function RangeSliderTwo({ min, max, onComplete, onChange }: Props) {
 
   return (
     <Wrapper>
-      <Input
-        ref={leftInput}
-        type="range"
-        min="0"
-        max="100"
-        value={leftValue}
-        onChange={(e) => setLeftValue(Math.min(Number(e.target.value), Number(rightValue) - 1))}
-        onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
-        step="10"
-      />
-      <Input
-        ref={rightInput}
-        type="range"
-        min="0"
-        max="100"
-        value={rightValue}
-        onChange={(e) => setRightValue(Math.max(Number(e.target.value), Number(leftValue) + 1))}
-        onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
-        step="10"
-      />
+      <Result>
+        <span>{`${leftValue}${unit}`}</span>
+        <span> ~ </span>
+        <span>{`${rightValue}${unit}`}</span>
+      </Result>
 
-      <Slider>
-        <Track />
-        <Range leftWeight={leftPercentage} rightWeight={rightPercentage}></Range>
-        <ThumbLeft weight={leftPercentage}></ThumbLeft>
-        <ThumbRight weight={rightPercentage}></ThumbRight>
-      </Slider>
+      <SliderWrapper>
+        <Input
+          ref={leftInput}
+          type="range"
+          min={min}
+          max={max}
+          value={leftValue}
+          onChange={(e) => setLeftValue(Math.min(Number(e.target.value), Number(rightValue) - 1))}
+          onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
+        />
+        <Input
+          ref={rightInput}
+          type="range"
+          min={min}
+          max={max}
+          value={rightValue}
+          onChange={(e) => setRightValue(Math.max(Number(e.target.value), Number(leftValue) + 1))}
+          onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
+        />
+        <Slider>
+          <Track />
+          <Range leftWeight={leftPercentage} rightWeight={rightPercentage}></Range>
+          <ThumbLeft weight={leftPercentage}></ThumbLeft>
+          <ThumbRight weight={rightPercentage}></ThumbRight>
+        </Slider>
+
+        <GuidLine>
+          <GuideLineText>{`${min}${unit}`}</GuideLineText>
+          <GuideLineText>{`${max / 2}${unit}`}</GuideLineText>
+          <GuideLineText>{`${max}${unit}`}</GuideLineText>
+        </GuidLine>
+      </SliderWrapper>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``
+const SliderWrapper = styled.div`
   position: relative;
+`
+
+const Result = styled.div`
+  text-align: right;
+  font-size: 16px;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.color.main};
 `
 
 const Input = styled.input`
@@ -96,8 +113,32 @@ const Slider = styled.div`
   position: relative;
   z-index: 1;
   height: 5px;
-  margin: ${THUMB_SIZE / 2}px;
+  margin: ${THUMB_SIZE}px ${THUMB_SIZE / 2}px;
 `
+
+const GuidLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const GuideLineText = styled.span`
+  position: relative;
+  color: ${({ theme }) => theme.color.grey};
+  min-width: 24px;
+  text-align: center;
+  &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 7px;
+    width: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: ${({ theme }) => theme.color.grey};
+  }
+`
+
 const Track = styled.div`
   position: absolute;
   z-index: 1;
@@ -123,9 +164,10 @@ const Thumb = styled.div<{ weight: number; hover?: boolean; active?: boolean }>`
   z-index: 3;
   width: ${THUMB_SIZE}px;
   height: ${THUMB_SIZE}px;
-  background-color: ${({ theme }) => theme.color.main};
+  background-color: ${({ theme }) => theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(98, 0, 238, 0.1);
+  box-shadow: rgb(157 157 157 / 20%) 0px 2px 5px 0px;
   transition: box-shadow 0.3s ease-in-out;
 
   ${({ hover }) =>
@@ -142,11 +184,11 @@ const Thumb = styled.div<{ weight: number; hover?: boolean; active?: boolean }>`
 
 const ThumbLeft = styled(Thumb)`
   left: ${({ weight }) => `${weight}%`};
-  transform: translate(-15px, -10px);
+  transform: translate(-${THUMB_SIZE / 2}px, -10px);
 `
 const ThumbRight = styled(Thumb)`
   right: ${({ weight }) => `${weight}%`};
-  transform: translate(15px, -10px);
+  transform: translate(${THUMB_SIZE / 2}px, -10px);
 `
 
-export default RangeSliderTwo
+export default RangeSlider
