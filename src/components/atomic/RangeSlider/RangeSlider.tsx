@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { IoInfiniteSharp } from 'react-icons/io5'
 import styled, { css } from 'styled-components'
 
 type Value = { min: number; max: number }
@@ -6,17 +7,20 @@ type Props = {
   min: number
   max: number
   unit?: string
+  step?: number
   onChange?(value: Value): void
   onComplete?(value: Value): void
 }
 
 const THUMB_SIZE = 25
-function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
+function RangeSlider({ min, max, unit, step = 1, onComplete, onChange }: Props) {
   const leftInput = useRef<HTMLInputElement>(null)
   const rightInput = useRef<HTMLInputElement>(null)
 
   const [leftValue, setLeftValue] = useState(min)
   const [rightValue, setRightValue] = useState(max)
+
+  const isInfinity = useMemo(() => rightValue === max, [rightValue, max])
 
   const leftPercentage = useMemo(() => (100 * (leftValue - min)) / (max - min), [
     leftValue,
@@ -39,8 +43,8 @@ function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
     <Wrapper>
       <Result>
         <span>{`${leftValue}${unit}`}</span>
-        <span> ~ </span>
-        <span>{`${rightValue}${unit}`}</span>
+        <span style={{ margin: '0 7px' }}>~</span>
+        {!isInfinity ? <span>{`${rightValue}${unit}`}</span> : <IoInfiniteSharp size={18} />}
       </Result>
 
       <SliderWrapper>
@@ -49,6 +53,7 @@ function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
           type="range"
           min={min}
           max={max}
+          step={step}
           value={leftValue}
           onChange={(e) => setLeftValue(Math.min(Number(e.target.value), Number(rightValue) - 1))}
           onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
@@ -58,6 +63,7 @@ function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
           type="range"
           min={min}
           max={max}
+          step={step}
           value={rightValue}
           onChange={(e) => setRightValue(Math.max(Number(e.target.value), Number(leftValue) + 1))}
           onMouseUp={() => onComplete?.({ min: leftValue, max: rightValue })}
@@ -71,8 +77,10 @@ function RangeSlider({ min, max, unit, onComplete, onChange }: Props) {
 
         <GuidLine>
           <GuideLineText>{`${min}${unit}`}</GuideLineText>
-          <GuideLineText>{`${max / 2}${unit}`}</GuideLineText>
-          <GuideLineText>{`${max}${unit}`}</GuideLineText>
+          <GuideLineText center>{`${max / 2}${unit}`}</GuideLineText>
+          <GuideLineText right>
+            <IoInfiniteSharp size={18} />
+          </GuideLineText>
         </GuidLine>
       </SliderWrapper>
     </Wrapper>
@@ -85,7 +93,9 @@ const SliderWrapper = styled.div`
 `
 
 const Result = styled.div`
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   font-size: 16px;
   line-height: 1.5;
   color: ${({ theme }) => theme.color.main};
@@ -121,11 +131,12 @@ const GuidLine = styled.div`
   justify-content: space-between;
 `
 
-const GuideLineText = styled.span`
+const GuideLineText = styled.span<{ center?: boolean; right?: boolean }>`
   position: relative;
   color: ${({ theme }) => theme.color.grey};
   min-width: 24px;
   text-align: center;
+
   &::after {
     content: '';
     position: absolute;
@@ -137,6 +148,20 @@ const GuideLineText = styled.span`
     transform: translateX(-50%);
     background: ${({ theme }) => theme.color.grey};
   }
+
+  ${({ center }) =>
+    center &&
+    css`
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    `}
+  ${({ right }) =>
+    right &&
+    css`
+      position: absolute;
+      right: 0;
+    `}
 `
 
 const Track = styled.div`
