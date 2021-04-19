@@ -8,7 +8,7 @@ type DayProps = {
   value: Dayjs
   onClick(value: any): void
 }
-∏
+
 function Day({ onClick, value, selected, disabled }: DayProps) {
   const isCurrDate = (value: Dayjs): boolean => value.isSame(new Date(), 'date')
 
