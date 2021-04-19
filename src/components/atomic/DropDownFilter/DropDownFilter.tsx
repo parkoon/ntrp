@@ -53,8 +53,6 @@ const Wrapper = styled.div`
   position: relative;
   display: inline-block;
   z-index: 10;
-
-  background: red;
 `
 
 const Checkbox = styled.input`
